@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.phr.tx.service.message.model.mapper.PhrTransactionMessageMapper">
+
+	 <resultMap type="com.phr.tx.service.message.model.entity.PhrTransactionMessageEntity" id="BaseResultMap">
+    	 <id column="id" property="id" /> 
+		  <id column="version" property="version" /> 
+		  <id column="editor" property="editor" /> 
+		  <id column="creater" property="creater" /> 
+		  <id column="editTime" property="editTime" /> 
+		  <id column="createTime" property="createTime" /> 
+		  <id column="messageId" property="messageId" /> 
+		  <id column="messageBody" property="messageBody" /> 
+		  <id column="messageDataType" property="messageDataType" /> 
+		  <id column="consumerQueue" property="consumerQueue" /> 
+		  <id column="messageSendTimes" property="messageSendTimes" /> 
+		  <id column="areadlyDead" property="areadlyDead" /> 
+		  <id column="status" property="status" /> 
+		  <id column="remark" property="remark" /> 
+		  <id column="field1" property="field1" /> 
+		  <id column="field2" property="field2" /> 
+		  <id column="field3" property="field3" /> 
+  
+    </resultMap>
+    <sql id="Base_Column_List">
+    	 phrTransactionMessage.id as id ,
+ 		 phrTransactionMessage.version as version ,
+ 		 phrTransactionMessage.editor as editor ,
+ 		 phrTransactionMessage.creater as creater ,
+ 		 phrTransactionMessage.edit_time as editTime ,
+ 		 phrTransactionMessage.create_time as createTime ,
+ 		 phrTransactionMessage.message_id as messageId ,
+ 		 phrTransactionMessage.message_body as messageBody ,
+ 		 phrTransactionMessage.message_data_type as messageDataType ,
+ 		 phrTransactionMessage.consumer_queue as consumerQueue ,
+ 		 phrTransactionMessage.message_send_times as messageSendTimes ,
+ 		 phrTransactionMessage.areadly_dead as areadlyDead ,
+ 		 phrTransactionMessage.status as status ,
+ 		 phrTransactionMessage.remark as remark ,
+ 		 phrTransactionMessage.field1 as field1 ,
+ 		 phrTransactionMessage.field2 as field2 ,
+ 		 phrTransactionMessage.field3 as field3
+    </sql>
+    
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from t_phr_transaction_message phrTransactionMessage
+ 		  where phrTransactionMessage.id = #{ id }
+	</select>
+	<select id="selectByKeys" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from t_phr_transaction_message phrTransactionMessage
+ 		  where phrTransactionMessage.id = #{ id }
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		 delete 
+ 		  from t_phr_transaction_message
+ 		  where id = #{ id }
+	</delete>
+	
+	<insert id="insertSelective" parameterType="com.phr.tx.service.message.model.entity.PhrTransactionMessageEntity">
+		 insert into  t_phr_transaction_message
+ 		  <trim prefix="(" suffix=")" suffixOverrides=","> 
+ 			 <if test="id != null">
+ 				 id,
+ 			  </if>
+ 			 <if test="version != null">
+ 				 version,
+ 			  </if>
+ 			 <if test="editor != null">
+ 				 editor,
+ 			  </if>
+ 			 <if test="creater != null">
+ 				 creater,
+ 			  </if>
+ 			 <if test="editTime != null">
+ 				 edit_time,
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time,
+ 			  </if>
+ 			 <if test="messageId != null">
+ 				 message_id,
+ 			  </if>
+ 			 <if test="messageBody != null">
+ 				 message_body,
+ 			  </if>
+ 			 <if test="messageDataType != null">
+ 				 message_data_type,
+ 			  </if>
+ 			 <if test="consumerQueue != null">
+ 				 consumer_queue,
+ 			  </if>
+ 			 <if test="messageSendTimes != null">
+ 				 message_send_times,
+ 			  </if>
+ 			 <if test="areadlyDead != null">
+ 				 areadly_dead,
+ 			  </if>
+ 			 <if test="status != null">
+ 				 status,
+ 			  </if>
+ 			 <if test="remark != null">
+ 				 remark,
+ 			  </if>
+ 			 <if test="field1 != null">
+ 				 field1,
+ 			  </if>
+ 			 <if test="field2 != null">
+ 				 field2,
+ 			  </if>
+ 			 <if test="field3 != null">
+ 				 field3,
+ 			  </if>
+ 		  </trim>
+ 		  <trim prefix="values (" suffix=")" suffixOverrides="," >
+ 			 <if test="id != null">
+ 				 #{id},
+ 			  </if>
+ 			 <if test="version != null">
+ 				 #{version},
+ 			  </if>
+ 			 <if test="editor != null">
+ 				 #{editor},
+ 			  </if>
+ 			 <if test="creater != null">
+ 				 #{creater},
+ 			  </if>
+ 			 <if test="editTime != null">
+ 				 #{editTime},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 #{createTime},
+ 			  </if>
+ 			 <if test="messageId != null">
+ 				 #{messageId},
+ 			  </if>
+ 			 <if test="messageBody != null">
+ 				 #{messageBody},
+ 			  </if>
+ 			 <if test="messageDataType != null">
+ 				 #{messageDataType},
+ 			  </if>
+ 			 <if test="consumerQueue != null">
+ 				 #{consumerQueue},
+ 			  </if>
+ 			 <if test="messageSendTimes != null">
+ 				 #{messageSendTimes},
+ 			  </if>
+ 			 <if test="areadlyDead != null">
+ 				 #{areadlyDead},
+ 			  </if>
+ 			 <if test="status != null">
+ 				 #{status},
+ 			  </if>
+ 			 <if test="remark != null">
+ 				 #{remark},
+ 			  </if>
+ 			 <if test="field1 != null">
+ 				 #{field1},
+ 			  </if>
+ 			 <if test="field2 != null">
+ 				 #{field2},
+ 			  </if>
+ 			 <if test="field3 != null">
+ 				 #{field3},
+ 			  </if>
+ 		  </trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.phr.tx.service.message.model.entity.PhrTransactionMessageEntity">
+		 update   t_phr_transaction_message
+ 		 <set>
+ 			 <if test="version != null">
+ 				 version = #{version},
+ 			  </if>
+ 			 <if test="editor != null">
+ 				 editor = #{editor},
+ 			  </if>
+ 			 <if test="creater != null">
+ 				 creater = #{creater},
+ 			  </if>
+ 			 <if test="editTime != null">
+ 				 edit_time = #{editTime},
+ 			  </if>
+ 			 <if test="createTime != null">
+ 				 create_time = #{createTime},
+ 			  </if>
+ 			 <if test="messageId != null">
+ 				 message_id = #{messageId},
+ 			  </if>
+ 			 <if test="messageBody != null">
+ 				 message_body = #{messageBody},
+ 			  </if>
+ 			 <if test="messageDataType != null">
+ 				 message_data_type = #{messageDataType},
+ 			  </if>
+ 			 <if test="consumerQueue != null">
+ 				 consumer_queue = #{consumerQueue},
+ 			  </if>
+ 			 <if test="messageSendTimes != null">
+ 				 message_send_times = #{messageSendTimes},
+ 			  </if>
+ 			 <if test="areadlyDead != null">
+ 				 areadly_dead = #{areadlyDead},
+ 			  </if>
+ 			 <if test="status != null">
+ 				 status = #{status},
+ 			  </if>
+ 			 <if test="remark != null">
+ 				 remark = #{remark},
+ 			  </if>
+ 			 <if test="field1 != null">
+ 				 field1 = #{field1},
+ 			  </if>
+ 			 <if test="field2 != null">
+ 				 field2 = #{field2},
+ 			  </if>
+ 			 <if test="field3 != null">
+ 				 field3 = #{field3},
+ 			  </if>
+ 		 </set>
+     where id = #{id}
+	</update>
+	
+	 <select id="getList" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from t_phr_transaction_message phrTransactionMessage
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and phrTransactionMessage.id = #{id}
+ 		  </if>
+ 		 <if test="version != null">
+ 			 and phrTransactionMessage.version = #{version}
+ 		  </if>
+ 		 <if test="editor != null">
+ 			 and phrTransactionMessage.editor = #{editor}
+ 		  </if>
+ 		 <if test="creater != null">
+ 			 and phrTransactionMessage.creater = #{creater}
+ 		  </if>
+ 		 <if test="editTime != null">
+ 			 and phrTransactionMessage.edit_time = #{editTime}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and phrTransactionMessage.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="messageId != null">
+ 			 and phrTransactionMessage.message_id = #{messageId}
+ 		  </if>
+ 		 <if test="messageBody != null">
+ 			 and phrTransactionMessage.message_body = #{messageBody}
+ 		  </if>
+ 		 <if test="messageDataType != null">
+ 			 and phrTransactionMessage.message_data_type = #{messageDataType}
+ 		  </if>
+ 		 <if test="consumerQueue != null">
+ 			 and phrTransactionMessage.consumer_queue = #{consumerQueue}
+ 		  </if>
+ 		 <if test="messageSendTimes != null">
+ 			 and phrTransactionMessage.message_send_times = #{messageSendTimes}
+ 		  </if>
+ 		 <if test="areadlyDead != null">
+ 			 and phrTransactionMessage.areadly_dead = #{areadlyDead}
+ 		  </if>
+ 		 <if test="status != null">
+ 			 and phrTransactionMessage.status = #{status}
+ 		  </if>
+ 		 <if test="remark != null">
+ 			 and phrTransactionMessage.remark = #{remark}
+ 		  </if>
+ 		 <if test="field1 != null">
+ 			 and phrTransactionMessage.field1 = #{field1}
+ 		  </if>
+ 		 <if test="field2 != null">
+ 			 and phrTransactionMessage.field2 = #{field2}
+ 		  </if>
+ 		 <if test="field3 != null">
+ 			 and phrTransactionMessage.field3 = #{field3}
+ 		  </if>
+	</select>
+	 <select id="getListByPage" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		 select 
+ 		  <include refid="Base_Column_List" />
+ 		  from t_phr_transaction_message phrTransactionMessage
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and phrTransactionMessage.id = #{id}
+ 		  </if>
+ 		 <if test="version != null">
+ 			 and phrTransactionMessage.version = #{version}
+ 		  </if>
+ 		 <if test="editor != null">
+ 			 and phrTransactionMessage.editor = #{editor}
+ 		  </if>
+ 		 <if test="creater != null">
+ 			 and phrTransactionMessage.creater = #{creater}
+ 		  </if>
+ 		 <if test="editTime != null">
+ 			 and phrTransactionMessage.edit_time = #{editTime}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and phrTransactionMessage.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="messageId != null">
+ 			 and phrTransactionMessage.message_id = #{messageId}
+ 		  </if>
+ 		 <if test="messageBody != null">
+ 			 and phrTransactionMessage.message_body = #{messageBody}
+ 		  </if>
+ 		 <if test="messageDataType != null">
+ 			 and phrTransactionMessage.message_data_type = #{messageDataType}
+ 		  </if>
+ 		 <if test="consumerQueue != null">
+ 			 and phrTransactionMessage.consumer_queue = #{consumerQueue}
+ 		  </if>
+ 		 <if test="messageSendTimes != null">
+ 			 and phrTransactionMessage.message_send_times = #{messageSendTimes}
+ 		  </if>
+ 		 <if test="areadlyDead != null">
+ 			 and phrTransactionMessage.areadly_dead = #{areadlyDead}
+ 		  </if>
+ 		 <if test="status != null">
+ 			 and phrTransactionMessage.status = #{status}
+ 		  </if>
+ 		 <if test="remark != null">
+ 			 and phrTransactionMessage.remark = #{remark}
+ 		  </if>
+ 		 <if test="field1 != null">
+ 			 and phrTransactionMessage.field1 = #{field1}
+ 		  </if>
+ 		 <if test="field2 != null">
+ 			 and phrTransactionMessage.field2 = #{field2}
+ 		  </if>
+ 		 <if test="field3 != null">
+ 			 and phrTransactionMessage.field3 = #{field3}
+ 		  </if>
+	</select>
+	 <select id="getListCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		 select 
+ 		  count(phrTransactionMessage.id)
+ 		  from t_phr_transaction_message phrTransactionMessage
+ 		  where 1=1 
+ 		 <if test="id != null">
+ 			 and phrTransactionMessage.id = #{id}
+ 		  </if>
+ 		 <if test="version != null">
+ 			 and phrTransactionMessage.version = #{version}
+ 		  </if>
+ 		 <if test="editor != null">
+ 			 and phrTransactionMessage.editor = #{editor}
+ 		  </if>
+ 		 <if test="creater != null">
+ 			 and phrTransactionMessage.creater = #{creater}
+ 		  </if>
+ 		 <if test="editTime != null">
+ 			 and phrTransactionMessage.edit_time = #{editTime}
+ 		  </if>
+ 		 <if test="createTime != null">
+ 			 and phrTransactionMessage.create_time = #{createTime}
+ 		  </if>
+ 		 <if test="messageId != null">
+ 			 and phrTransactionMessage.message_id = #{messageId}
+ 		  </if>
+ 		 <if test="messageBody != null">
+ 			 and phrTransactionMessage.message_body = #{messageBody}
+ 		  </if>
+ 		 <if test="messageDataType != null">
+ 			 and phrTransactionMessage.message_data_type = #{messageDataType}
+ 		  </if>
+ 		 <if test="consumerQueue != null">
+ 			 and phrTransactionMessage.consumer_queue = #{consumerQueue}
+ 		  </if>
+ 		 <if test="messageSendTimes != null">
+ 			 and phrTransactionMessage.message_send_times = #{messageSendTimes}
+ 		  </if>
+ 		 <if test="areadlyDead != null">
+ 			 and phrTransactionMessage.areadly_dead = #{areadlyDead}
+ 		  </if>
+ 		 <if test="status != null">
+ 			 and phrTransactionMessage.status = #{status}
+ 		  </if>
+ 		 <if test="remark != null">
+ 			 and phrTransactionMessage.remark = #{remark}
+ 		  </if>
+ 		 <if test="field1 != null">
+ 			 and phrTransactionMessage.field1 = #{field1}
+ 		  </if>
+ 		 <if test="field2 != null">
+ 			 and phrTransactionMessage.field2 = #{field2}
+ 		  </if>
+ 		 <if test="field3 != null">
+ 			 and phrTransactionMessage.field3 = #{field3}
+ 		  </if>
+	</select>
+</mapper>

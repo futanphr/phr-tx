@@ -4,4 +4,186 @@
   <artifactId>phr-tx</artifactId>
   <version>1.0</version>
   <packaging>pom</packaging>
+  <modules>
+  	<module>phr-tx-common-config</module>
+  	<module>phr-tx-common-core</module>
+  	<module>phr-tx-service-message-api</module>
+  	<module>phr-tx-sevice-message</module>
+  </modules>
+  
+  
+  <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.0.RELEASE</version>
+	</parent>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<mybatis.spring.boot.version>1.3.2</mybatis.spring.boot.version>
+		<mysql.connector.version>5.1.24</mysql.connector.version>
+		<druid.version>1.1.9</druid.version>
+		<fastjson.version>1.2.47</fastjson.version>
+		<pagehelper.version>5.1.2</pagehelper.version>
+		<sharding.jdbc.version>1.5.4.1</sharding.jdbc.version>
+		<jfcf-quota-common.version>1.0.0</jfcf-quota-common.version>
+		<commons-lang3.version>3.2</commons-lang3.version>
+		<jedis.version>2.9.0</jedis.version>
+		<jfcf-dto.version>1.0.20170814</jfcf-dto.version>
+		<wk-dto.version>1.0.20171201</wk-dto.version>
+		<commons-codec.version>1.10</commons-codec.version>
+		<commons-text.version>1.2</commons-text.version>
+		<unirest-java.version>1.4.9</unirest-java.version>
+		<jfcf-quota-api.version>1.0.7.20180112</jfcf-quota-api.version>
+		<zookeeper.version>3.4.9</zookeeper.version>
+		<dubbo.version>2.5.7</dubbo.version>
+		<zkclient.version>0.10</zkclient.version>
+		<skipTests>true</skipTests>
+		<rocketmq.version>3.2.6</rocketmq.version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis.spring.boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.connector.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+			<!--分页插件 -->
+			<dependency>
+				<groupId>com.github.pagehelper</groupId>
+				<artifactId>pagehelper</artifactId>
+				<version>${pagehelper.version}</version>
+			</dependency>
+
+			<!--sharding-jdbc -->
+			<dependency>
+				<groupId>com.dangdang</groupId>
+				<artifactId>sharding-jdbc-core</artifactId>
+				<version>${sharding.jdbc.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/redis.clients/jedis redislian连接jar包 -->
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>${jedis.version}</version>
+			</dependency>
+
+
+			<!-- 通用工具包
+			<dependency>
+				<groupId>jfcf-quota-boot</groupId>
+				<artifactId>jfcf-quota-common</artifactId>
+				<version>${jfcf-quota-common.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>com.jfcf</groupId>
+				<artifactId>jfcf-dto</artifactId>
+				<version>${jfcf-dto.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jfcf</groupId>
+				<artifactId>wk-dto</artifactId>
+				<version>${wk-dto.version}</version>
+			</dependency>
+ -->
+
+			<!-- signUtils 加密用到 -->
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons-codec.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-text</artifactId>
+				<version>${commons-text.version}</version>
+			</dependency>
+			<!-- http请求 -->
+			<dependency>
+				<groupId>com.mashape.unirest</groupId>
+				<artifactId>unirest-java</artifactId>
+				<version>${unirest-java.version}</version>
+			</dependency>
+			<!-- dubbo 开始 -->
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>dubbo</artifactId>
+				<version>${dubbo.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>spring</artifactId>
+						<groupId>org.springframework</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.zookeeper</groupId>
+				<artifactId>zookeeper</artifactId>
+				<version>${zookeeper.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>slf4j-log4j12</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>log4j</artifactId>
+						<groupId>log4j</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>com.101tec</groupId>
+				<artifactId>zkclient</artifactId>
+				<version>${zkclient.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>slf4j-log4j12</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>log4j</artifactId>
+						<groupId>log4j</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- dubbo end -->
+
+			<!--dubbo对外暴露接口 
+			<dependency>
+				<groupId>jfcf-quota</groupId>
+				<artifactId>jfcf-quota-api</artifactId>
+				<version>${jfcf-quota-api.version}</version>
+			</dependency>-->
+		</dependencies>
+	</dependencyManagement>
 </project>

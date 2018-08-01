@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.phr</groupId>
+		<artifactId>phr-tx</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>phr-tx-sevice-message</artifactId>
+
+	<dependencies>
+	    <dependency>
+			<groupId>com.phr</groupId>
+			<artifactId>phr-tx-service-message-api</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.phr</groupId>
+			<artifactId>phr-tx-common-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<!-- http://mvnrepository.com/artifact/commons-httpclient/commons-httpclient -->
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-activemq</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.phr</groupId>
+			<artifactId>phr-code-generator</artifactId>
+			<version>1.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+</project>
