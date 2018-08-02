@@ -110,8 +110,8 @@ cache:
 rocketmq:
   namesrvAddr: 192.168.68.130:9876
   #监听的队列
-  listenTopicsTags1: bangsheng_data_notice_topic|auth_tags
-  listenTopicsTags2: bangsheng_data_notice_topic|check_result_notice_quota_tags
+  listenTopicsTags1: bank_topic|auth_tags
+  listenTopicsTags2: bank_topic|check_result_notice_quota_tags
   consumeThreadMin: 20
   consumeThreadMax: 40
   producerGroupName: quote-check-platform-produce-group

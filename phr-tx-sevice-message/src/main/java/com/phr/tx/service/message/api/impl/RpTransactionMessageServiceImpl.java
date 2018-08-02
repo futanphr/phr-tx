@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.Session;
@@ -25,6 +26,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.phr.tx.service.message.api.RpTransactionMessageService;
 import com.phr.tx.service.message.enums.MessageStatusEnum;
@@ -32,6 +34,7 @@ import com.phr.tx.service.message.exceptions.MessageBizException;
 import com.phr.tx.service.message.model.entity.PhrTransactionMessageEntity;
 import com.phr.tx.service.message.model.entity.RpTransactionMessage;
 import com.phr.tx.service.message.model.service.PhrTransactionMessageService;
+import com.phr.tx.service.message.mq.MqSenderImpl;
 import com.roncoo.pay.common.core.enums.PublicEnum;
 import com.roncoo.pay.common.core.page.PageBean;
 import com.roncoo.pay.common.core.page.PageParam;
@@ -53,6 +56,9 @@ public class RpTransactionMessageServiceImpl implements RpTransactionMessageServ
 
 	@Autowired
 	private JmsTemplate notifyJmsTemplate;
+	
+	@Resource
+	private MqSenderImpl mqSenderImpl;
 
 	@Override
 	public int saveMessageWaitingConfirm(PhrTransactionMessageEntity message) throws MessageBizException {
@@ -108,12 +114,13 @@ public class RpTransactionMessageServiceImpl implements RpTransactionMessageServ
 		message.setEditTime(new Date());
 		int result = phrTransactionMessageService.insertSelective(message);
 
-		notifyJmsTemplate.setDefaultDestinationName(message.getConsumerQueue());
+		/*notifyJmsTemplate.setDefaultDestinationName(message.getConsumerQueue());
 		notifyJmsTemplate.send(new MessageCreator() {
 			public Message createMessage(Session session) throws JMSException {
 				return session.createTextMessage(message.getMessageBody());
 			}
-		});
+		});*/
+		mqSenderImpl.sendMessage(JSON.toJSONString(message), "bank_topic", "auth_tags", "13120039229");
 
 		return result;
 	}
